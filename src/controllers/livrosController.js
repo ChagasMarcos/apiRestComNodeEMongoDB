@@ -8,7 +8,7 @@ class LivrosController {
         const listaLivros = await livro.find({});
         res.status(200).json(listaLivros);
         } catch (erro) {
-        res.status(500).json({ message: `${erro.message} - Falhou!` });
+        res.status(500).json({ message: `${erro.message} - Listar Livros Falhou!` });
          }
     };
 
@@ -20,10 +20,10 @@ class LivrosController {
             const livroCompleto = { ...novoLivro, autor: { ...autorEncontrado._doc}}; //monta o livro a ser criado
             await livro.create(livroCompleto); //salva novo livro
             res.status(201).json({
-                message: "Criou!",
+                message: "Livro Adicionado!",
                 livro: livroCompleto });
         } catch (erro) {
-            res.status(500).json({ message: `${erro.message} - Falhou!` });
+            res.status(500).json({ message: `${erro.message} - Erro ao adicionar novo livro!` });
         }
     }
 
@@ -33,7 +33,7 @@ class LivrosController {
             const livroEncontrado = await livro.findById({id});
             res.status(200).json(livroEncontrado);
         } catch (erro) {
-            res.status(500).json({ message: `${erro.message} - Falhou!` });
+            res.status(500).json({ message: `${erro.message} - Erro ao selecionar novo livro!` });
         }
     };
 
@@ -44,7 +44,7 @@ class LivrosController {
             await livro.findByIdAndUpdate(id, req.body);
             res.status(200).json({message: "Livro atualizado"});
         } catch (erro) {
-            res.status(500).json({ message: `${erro.message} - Falhou!` });
+            res.status(500).json({ message: `${erro.message} - Erro ao atualizar novo livro!` });
         }
     };
 
@@ -54,7 +54,7 @@ class LivrosController {
             await livro.findByIdAndDelete(id);
             res.status(200).json({message: "Livro excluido!"});
         } catch (erro) {
-            res.status(500).json({ message: `${erro.message} - Falhou!` });
+            res.status(500).json({ message: `${erro.message} - Erro ao excluir novo livro!` });
         }
     };
 
@@ -65,7 +65,7 @@ class LivrosController {
             const livrosPorEditora = await livro.find({editora});
             res.status(200).json(livrosPorEditora);
         } catch(erro) {
-            res.status(500).json({ message: `${erro.message} - Falhou!` });
+            res.status(500).json({ message: `${erro.message} - Erro ao listar livro por Editora!` });
         }
     }
 };

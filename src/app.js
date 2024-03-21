@@ -5,11 +5,11 @@ import routes from "./routes/index.js";
 const conexao = await conectaNaDatabase();
 
 conexao.on("error", (erro) => {
-    console.error("Deu ruim", erro);
+    console.error("Erro ao Conectar!", erro);
 });
 
 conexao.once("open", ()=>{
-console.log("Conectou!");
+console.log("Servidor Conectado!");
 });
 
 const app = express();
